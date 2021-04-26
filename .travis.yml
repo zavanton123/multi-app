@@ -15,15 +15,14 @@ after_success:
   - echo "$HUB_PASSWORD" | docker login -u "$HUB_ID" --password-stdin
   - docker push zavanton/super-client
 
-#deploy:
-#  provider: elasticbeanstalk
-#  region: aaa
-#  app: aaa
-#  env: aaa
-#  bucket_name: aaa
-#  bucker_path: aaa
-#  on:
-#    branch: master
-#  access_key_id: aaa
-#  secret_access_key: aaa
-#
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: super-project
+  env: Superproject-env
+  bucket_name: elasticbeanstalk-us-east-2-565447122202
+  bucker_path: project-super
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
