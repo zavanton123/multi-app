@@ -5,12 +5,25 @@ services:
   - docker
 
 before_install:
-  - docker build -t zavanton/react-test -f Dockerfile .
+  - docker build -t zavanton/react-test -f Dockerfile.dev .
 
 script:
   - docker run -e CI=true zavanton/react-test npm run test
 
 after_success:
-  - docker build -t zavanton/super-client .
+  - docker build -t zavanton/super-client -f Dockerfile .
   - echo "$HUB_PASSWORD" | docker login -u "$HUB_ID" --password-stdin
   - docker push zavanton/super-client
+
+#deploy:
+#  provider: elasticbeanstalk
+#  region: aaa
+#  app: aaa
+#  env: aaa
+#  bucket_name: aaa
+#  bucker_path: aaa
+#  on:
+#    branch: master
+#  access_key_id: aaa
+#  secret_access_key: aaa
+#
