@@ -1,0 +1,12 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "zavanton/super-client",
+      "hostname": "client",
+      "essential": true,
+      "memory": 128
+    }
+  ]
+}
