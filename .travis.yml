@@ -9,3 +9,8 @@ before_install:
 
 script:
   - docker run -e CI=true zavanton/react-test npm run test
+
+after_success:
+  - docker build -t zavanton/super-client .
+  - echo "$HUB_PASSWORD" | docker login -u "$HUB_ID" --password-stdin
+  - docker push zavanton/super-client
